@@ -5,6 +5,7 @@ services:
     image: nginx:latest
     volumes:
       # - ./letsencrypt:/etc/letsencrypt
+      - ./letsencrypt:/etc/nginx/conf.d
       - ./:/var/www
       - ./_docker/nginx/conf.d:/etc/nginx/conf.d
     
