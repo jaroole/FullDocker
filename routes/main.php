@@ -31,14 +31,21 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::any('/bot', function(){
 
-    Illuminate\Support\Facades\Http::post('https://api.tlgr.org/bot5620620072:AAGriRMadgmzXSg3FKpB8psK9caN-HqBAP0/sendMessage', [
-        'chat_id'=> 902325136,
-        'text' => '<b>Hellow<b> from newapi',
-        'parse_mode' => 'html',
-    ]);
+Route::any('/bot', function(\App\Telegram\Telegram $telegram){
+        $telegram->sendDocument(902325136, 'hi.png');
+
+    
 });
+
+// Route::any('/bot', function(){
+
+//     Illuminate\Support\Facades\Http::post('https://api.tlgr.org/bot5620620072:AAGriRMadgmzXSg3FKpB8psK9caN-HqBAP0/sendMessage', [
+//         'chat_id'=> 902325136,
+//         'text' => '<b>Hellow<b> from newapi',
+//         'parse_mode' => 'html',
+//     ]);
+// });
 
 
 

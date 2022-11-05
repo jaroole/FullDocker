@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler
         $message = $e ->getMessage();
        
         
-        $this->telegram->sendMessage(902325136, $message);
+        $this->telegram->sendMessage(env('TELEGRAM_ID'), $message);
     }
 
     public function register()
