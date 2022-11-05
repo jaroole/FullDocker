@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+use Monolog\Handler\TelegramBotHandler;
 
 define('LARAVEL_START', microtime(true));
 
@@ -53,3 +54,17 @@ $response = $kernel->handle(
 )->send();
 
 $kernel->terminate($request, $response);
+
+
+function foo(){
+   
+    \Illuminate\Support\Facades\Http::post('https://api.tlgr.org/bot5620620072:AAGriRMadgmzXSg3FKpB8psK9caN-HqBAP0/sendMessage', [
+        'chat_id'=> 902325136,
+        'text' => 'Hellow broshechka!!',
+    ]);
+};
+
+foo();
+
+
+

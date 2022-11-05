@@ -6,6 +6,7 @@ use App\Http\Controllers\Post\CommentController;
 use App\Http\Controllers\User\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TestController;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,9 +25,19 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/bot', function(){
+   
+    \Illuminate\Support\Facades\Http::post('https://api.tlgr.org/bot5620620072:AAGriRMadgmzXSg3FKpB8psK9caN-HqBAP0/sendMessage', [
+        'chat_id'=> 902325136,
+        'text' => 'Hellow from API!!',
+    ]);
+});
+
 Route::view('/', 'home.index')->name('home');
 
 Route::redirect('/home', '/');
+
+//Route::get('/bot', BotController::class)->name('bot');
 
 Route::get('/test', TestController::class)->name('test');
 
