@@ -12,7 +12,7 @@ class TestController extends Controller
         $this->middleware('throttle:10');
     }
 
-    public function __inboke()
+    public function __invoke()
     {
        
 
@@ -32,6 +32,3 @@ class TestController extends Controller
         
     
 }
-
-$this->TesController;
-$TestController->bot();

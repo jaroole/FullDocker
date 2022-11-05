@@ -12,7 +12,10 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'bot',
-        
+        '/bot*',
+	'bot*',
+	'5620620072:AAGriRMadgmzXSg3FKpB8psK9caN-HqBAP0',
+	'laraveltesting.ru/bot',
+	'laraveltesting.ru/bot*'
     ];
 }
