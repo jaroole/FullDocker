@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BotController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Post\CommentController;
 use App\Http\Controllers\User\PostController;
@@ -32,11 +33,31 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::any('/bot', function(\App\Telegram\Telegram $telegram){
-        $telegram->sendDocument(902325136, 'hi.png');
+Route::any('/bot', [BotController::class, 'index']);
+// Route::any('/bot', function(\App\Telegram\Telegram $telegram){
+//     $buttons = [
+//         'inline_keyboard' => [
+//             [
+//                 [
+//                     'text'=>'button1',
+//                     'callback_data'=> '1',
+
+//                 ],
+//                 [
+//                     'text'=>'button2',
+//                     'callback_data'=> '2',
+
+//                 ]
+//             ]
+//             ]
+//         ];
+
+//     $sendMessage = $telegram -> sendButtons(902325136, 'test', json_encode($buttons));
+//     $sendMessage = json_decode($sendMessage);
+//     dd($sendMessage);
 
     
-});
+// });
 
 // Route::any('/bot', function(){
 

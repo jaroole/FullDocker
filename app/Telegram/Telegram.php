@@ -29,12 +29,24 @@ class Telegram {
 
         public function sendDocument($chat_id, $file){
 
-        return    $this->http::attach('document', Storage::get('/publict/hi.png'),'document.png')->post(self::url.$this->bot.'/sendDocument', [
+        return    $this->http::attach('document', Storage::get('/public/hi.png'),'document.png')->post(self::url.$this->bot.'/sendDocument', [
                 'chat_id'=> $chat_id,
 
 
             ]);
         }
+
+        public function sendButtons($chat_id, $message, $button){
+
+            return    $this->http::post(self::url.$this->bot.'/sendMessage', [
+                    'chat_id'=> $chat_id,
+                    'text' => $message,
+                    'parse_mode' => 'html',
+                    'reply_markup' => $button,
+                ]);
+            }
+
+
 }
 
 //902325136
