@@ -25,3 +25,4 @@ if (!function_exists('alert')){
         session(['alert'=>$value]);
     }
 }
+
