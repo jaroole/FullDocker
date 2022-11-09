@@ -90,9 +90,7 @@ class PostController extends Controller
         
 
         // dd($title, $content);
-        // return 'Страница обновления постов';
 
-        // return redirect()->route('user.posts.show', $post);
         alert(__('Сохранено'));
         return redirect()->route('user.posts');
     }
@@ -100,7 +98,7 @@ class PostController extends Controller
 
 
     public function delete($post){
-        // return 'Страница удаления постов';
+    
        
         DB::delete('delete from posts where id = ?', [$post]);
        
@@ -114,9 +112,7 @@ class PostController extends Controller
     public function like(){
         return ' лайка+1';
     }
-    // public function create(){
-    //     return 'Страница списка постов';
-    // }
+
 
 }
 

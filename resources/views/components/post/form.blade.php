@@ -2,12 +2,12 @@
 
 <x-form {{$attributes}} > 
     <x-form-item>
-        <x-label required> {{__('Название поста')}} </x-label>
+        <x-label required> {{__('Название рассылки')}} </x-label>
         <x-input name="title" value="{{$post->title ?? ''}}" />
     </x-form-item>
 
     <x-form-item>
-        <x-label required> {{__('Название поста')}} </x-label>
+        <x-label required> {{__('Название рассылки')}} </x-label>
         <x-input id="content" value="{{$post->content ?? ''}}" type="hidden" name="content"/>
         <trix-editor input="content"></trix-editor>
         

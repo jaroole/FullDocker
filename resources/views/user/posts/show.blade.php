@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('page.title', 'Просмотр поста')
+@section('page.title', 'Просмотр рассылки')
 @section('main.content')
        
 
@@ -13,7 +13,7 @@
 
 
         <x-title>
-            {{__('Просмотр поста')}}
+            {{__('Просмотр рассылки')}}
             <x-slot name="right">
                     <x-button-link href="{{route('user.posts.edit', $post['id'])}}">
                         {{__('Изменить')}}
@@ -23,7 +23,7 @@
                     <x-post.delete action="{{route('user.posts.delete', $post['id'])}}" method="delete">
 
                         <x-button type="submit" size="sm" class="mb-3">
-                            {{__('Удалить пост')}}
+                            {{__('Удалить рассылку')}}
                         </x-button>
                     </x-post.delete>         
                     

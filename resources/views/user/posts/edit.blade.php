@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('page.title', 'Изменить пост')
+@section('page.title', 'Изменить рассылку')
 @section('main.content')
         <x-title>
-            {{__('Изменит пост')}}
+            {{__('Изменит рассылку')}}
             <x-slot name="link">
                 <a href="{{route('user.posts')}}">
                 {{__('Назад')}}

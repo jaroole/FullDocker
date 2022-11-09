@@ -30,7 +30,7 @@ class CommentController extends Controller
 
         public function edit($post, $comment)
     {
-        return "Изменить комментарий {$comment} (пост {$post})";
+        return "Изменить комментарий {$comment} (Рассылка {$post})";
     }
 
     

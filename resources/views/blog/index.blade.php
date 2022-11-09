@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('page.title', 'Наш блог')
+@section('page.title', 'Рассылки')
 @section('main.content')
         <x-title>
-            {{__('Список постов')}}
+            {{__('Рассылки')}}
 
         </x-title>
 
@@ -13,7 +13,7 @@
 
 
         @if(empty($posts))
-        {{__('Нет ни одного поста')}}
+        {{__('Нет ни одной рассылки')}}
         
         @else
             <div class="row">

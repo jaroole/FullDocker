@@ -8,32 +8,30 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-        return 'Страница списка постов';
+        return 'Страница списка рассылки';
     }
     public function create(){
-        return 'Страница создания постов';
+        return 'Страница создания рассылки';
     }
     public function store(){
-        return 'Страница сохранения постов';
+        return 'Страница сохранения рассылки';
     }
     public function show($post){
-        return "Страница поста {$post}";
+        return "Страница рассылки {$post}";
     }
     public function edit($post){
-        return "Страница редактирования постов {$post}";
+        return "Страница редактирования рассылки {$post}";
     }
     public function update(){
-        return 'Страница обновления постов';
+        return 'Страница обновления рассылки';
     }
     public function delete(){
-        return 'Страница удаления постов';
+        return 'Страница удаления рассылки';
     }
     public function like(){
         return ' лайка+1';
     }
-    // public function create(){
-    //     return 'Страница списка постов';
-    // }
+
 
 }
 

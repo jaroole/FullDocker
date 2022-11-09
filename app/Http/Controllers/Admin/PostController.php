@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-        return 'Страница списка постов';
+        return 'Страница рассылок';
     }
     public function create(){
 
-        return 'Страница создания постов';
+        return 'Страница создания рассылки';
     }
     public function store(Request $request){
 
@@ -21,26 +21,24 @@ class PostController extends Controller
       
 
         dd($title, $content);
-        return 'Страница сохранения постов';
+        return 'Страница сохранения рассылки';
     }
     public function show($post){
-        return "Страница показа постов {$post}";
+        return "Страница показа рассылок {$post}";
     }
     public function edit($post){
-        return "Страница редактирования постов {$post}";
+        return "Страница редактирования рассылок {$post}";
     }
     public function update(){
-        return 'Страница обновления постов';
+        return 'Страница обновления рассылок';
     }
     public function delete(){
-        return 'Страница удаления постов';
+        return 'Страница удаления рассылки';
     }
     public function like(){
         return ' лайка+1';
     }
-    // public function create(){
-    //     return 'Страница списка постов';
-    // }
+
 
 }
 

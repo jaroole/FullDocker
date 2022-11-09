@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('page.title', 'Мои посты')
+@section('page.title', 'Мои рассылки')
 @section('main.content')
         <x-title>
-            {{__('Мои посты')}}
+            {{__('Мои рассылки')}}
             <x-slot name="right">
                 <x-button-link href="{{route('user.posts.create')}}">
                     {{__('Создать')}}
@@ -13,7 +13,7 @@
 
         </x-title>
         @if(empty($posts))
-        {{__('Нет ни одного поста')}}
+        {{__('Нет ни одной рассылки')}}
         
         @else
         @foreach ($posts as $post)

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('userId')->unique();
             $table->string('name')->nullable();
             $table->string('team')->nullable();
-            $table->string('jibTitle')->nullable();
+            $table->string('jobTitle')->nullable();
             $table->string('grade')->nullable();
             
 
