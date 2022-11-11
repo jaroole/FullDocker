@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Stmt\ElseIf_;
+use Illuminate\Console\Scheduling\Schedule;
+use App\Jobs\Heartbeat;
 
+use function PHPUnit\Framework\callback;
 use function Psy\debug;
 
 class BotController extends Controller
@@ -49,7 +52,6 @@ class BotController extends Controller
                 $messageForRegister = "<b>Your accaunt data:</b> \n\n<b>Name:</b> $userName \n<b>Team:</b> $userTeam \n<b>JobTitle:</b> $messageFromUser \n<b>Grade:</b> $userGrade \n";
                 $telegram->sendButtons($telegramUserId, $messageForRegister, json_encode($registerButtons));
             } elseif ($request->input('message.reply_to_message')['text'] == "Put your Grade:") {
-                $telegram->sendMessage($telegramUserId, "Your Grade: $messageFromUser");
                 DB::table('telega_users')->where('userid', $telegramUserId)->update(array('grade' => $messageFromUser));
                 $messageForRegister = "<b>Your accaunt data:</b> \n\n<b>Name:</b> $userName \n<b>Team:</b> $userTeam \n<b>JobTitle:</b> $userJobTitle \n<b>Grade:</b> $messageFromUser \n";
                 $telegram->sendButtons($telegramUserId, $messageForRegister, json_encode($registerButtons));
@@ -61,13 +63,14 @@ class BotController extends Controller
             if ($messageFromUser == "/start") {
                 $telegram->sendMessage($telegramUserId, 'Wellcome!');
                 $telegram->sendButtons($telegramUserId, 'Main menu:', json_encode($mainButtons));
-                //DB::table('telega_users')->where('userId', $telegramUserId)->update(array('userId' => $telegramUserId));
+                if (DB::table('telega_users')->where('userId', $telegramUserId)->value('userId')==false){
                 DB::insert('insert into telega_users (userId) values (?)', [$telegramUserId]);
+                }
             } else {
                 $telegram->sendMessage($telegramUserId, 'I can not recognize it, choose here please: /start');
             }
         }
-
+    
 
 
 
@@ -99,8 +102,12 @@ class BotController extends Controller
             } elseif ($callBackFromUser == "13") {
                 $telegram->sendButtonsWithQuery($telegramUserId, 'Put your Job Title:');
             } elseif ($callBackFromUser == "14") {
-                $telegram->sendButtonsWithQuery($telegramUserId, 'Put your Grade:');
+                $telegram->sendButtonsWithQuery($telegramUserId, "Put your Grade: ");
             }
+           
         }
+        //$telegram->sendButtons($telegramUserId, 'Main menu:', json_encode($mainButtons))->everyMinute();
+        //$telegram->sendMessage($telegramUserId, 'это ежедневное сообщение')->dailyAt('12:15');
+        //date('Y-m-d H:i:s')
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\User\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TestController;
 use GuzzleHttp\Psr7\Uri;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::any('/bot', [BotController::class, 'index']);
+Route::post('/bot', [BotController::class, 'index']);
+//Route::post('/botstart', [Schedule::class, 'schedule']);
 // Route::any('/bot', function(\App\Telegram\Telegram $telegram){
 //     $buttons = [
 //         'inline_keyboard' => [
