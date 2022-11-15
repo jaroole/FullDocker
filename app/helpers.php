@@ -1,6 +1,6 @@
 <?php
 
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 //         return app('test');
 //     }
 // }
+
 
 
 if (!function_exists('active_link')){
@@ -25,4 +26,6 @@ if (!function_exists('alert')){
         session(['alert'=>$value]);
     }
 }
+
+
 

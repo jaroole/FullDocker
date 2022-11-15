@@ -495,6 +495,8 @@ class ComposerStaticInit90b8a211e0b98152779ce9a116a9c975
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\openQuestionCommand' => __DIR__ . '/../..' . '/app/Console/Commands/openQuestionCommand.php',
+        'App\\Console\\Commands\\sayThanksCommand' => __DIR__ . '/../..' . '/app/Console/Commands/sayThanksCommand.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PostController.php',

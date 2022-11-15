@@ -22,10 +22,11 @@ return new class extends Migration
             $table->string('team')->nullable();
             $table->string('jobTitle')->nullable();
             $table->string('grade')->nullable();
-            
 
-            $table->string('avatar')->nullable();
-            $table->boolean('active')->default(true);
+            $table->string('question')->nullable();
+            $table->string('answer')->nullable();
+            $table->string('answerDate')->nullable();
+            $table->boolean('active')->default(false);
 
             $table->rememberToken();
 
