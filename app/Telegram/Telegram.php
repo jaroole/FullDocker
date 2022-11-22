@@ -56,6 +56,7 @@ class Telegram
             'reply_markup' => $button,
         ]);
     }
+
     public function sendButtonsWithQuery($chat_id, $message)
     {
 
@@ -63,18 +64,64 @@ class Telegram
             'chat_id' => $chat_id,
             'text' => $message,
             'parse_mode' => 'html',
-            'reply_markup' => json_encode(['force_reply' => true, 'selective' => false]),
+            
+            //'reply_markup' => json_encode(['force_reply' => true, 'selective' => false, 'input_field_placeholder'=> 'тест']),
         ]);
     }
 
-
-    public function sendMainButtons()
+    public function sendMainButtons($telegramUserId)
     {
+
+
+       
+        if (DB::table('telega_users')->where('userId', $telegramUserId)->value('registered') == 1){
+            return [
+                'inline_keyboard' => [
+                    [
+                        [
+                            'text' => 'Registration  ✅',
+                            'callback_data' => '1',
+    
+                        ],
+    
+                    ],
+    
+                    // [
+                    //     [
+                    //         'text' => 'Account settings',
+                    //         'callback_data' => '2',
+    
+                    //     ],
+    
+                    // ],
+                    [
+                        [
+                            'text' => 'Say thanks to ...',
+                            'callback_data' => '3',
+    
+                        ],
+    
+                    ],
+    
+                    // [
+                    //     [
+                    //         'text' => 'Your labor costs',
+                    //         'callback_data' => '4',
+    
+                    //     ],
+    
+                    // ],
+    
+                ]
+            ];            
+
+
+        } else{
         return [
             'inline_keyboard' => [
                 [
                     [
-                        'text' => 'Accaunt data',
+                        'text' => 'Registration',
                         'callback_data' => '1',
 
                     ],
@@ -109,9 +156,30 @@ class Telegram
 
             ]
         ];
+        }
     }
 
-    public function sendAccauntButtons()
+    public function sendRegisterButton()
+    {
+
+        return [
+            'inline_keyboard' => [
+                [
+                    [
+                        'text' => 'Try to registrate',
+                        'callback_data' => '1',
+
+                    ],
+
+                ],
+
+              
+            ]
+        ];
+        
+    }
+
+    public function sendAccountButtons()
     {
         return [
             'inline_keyboard' => [
@@ -188,6 +256,14 @@ class Telegram
                 ],
                 [
                     [
+                        'text' => 'Зарегестрировать учетную запись',
+                        'callback_data' => '15',
+
+                    ],
+
+                ],
+                [
+                    [
                         'text' => '<<<===Go back to menu',
                         'callback_data' => 'toMainMenu',
 
@@ -199,6 +275,24 @@ class Telegram
         ];
     }
 
+    public function sendbackButton()
+    {
+        return [
+            'inline_keyboard' => [
+                
+                    
+                [
+                    [
+                        'text' => '<<<===Go back to menu',
+                        'callback_data' => 'toMainMenu',
+
+                    ],
+
+                ],
+
+            ]
+        ];
+    }
     public function sendThanksButtons()
     {
         return [
@@ -301,16 +395,16 @@ class Telegram
         return ['inline_keyboard' => $buttons];
     }
 
-    public function makeDontSayThanksButtons($telegramUserId, $SecondParameter, $textonButton)
+    public function makeDontSayThanksButtons($listOfParameter, $parameter, $valuesOnButton)
     {
         $i = 0;
 
-        foreach ($telegramUserId as $value) {
+        foreach ($listOfParameter as $value) {
 
 
             $buttons[$i][0] = [
-                'text' => DB::table('telega_users')->where($SecondParameter, $value)->value($textonButton),
-                'callback_data' => 'dont_thanks' . $SecondParameter . DB::table('telega_users')->where($SecondParameter, $value)->value($SecondParameter)
+                'text' => DB::table('telega_users')->where($parameter, $value)->value($valuesOnButton),
+                'callback_data' => 'dont_thanks' . $parameter . DB::table('telega_users')->where($parameter, $value)->value($parameter)
             ];
             $i++;
         }
@@ -322,6 +416,7 @@ class Telegram
 
         $sortBy = DB::table('telega_users')->pluck($query);
         $sortBy = json_decode($sortBy);
+        $sortBy = array_filter($sortBy);
         $sortBy = array_values(array_unique($sortBy));
         $sortBy = $sortBy[array_rand($sortBy, 1)];
 
@@ -333,8 +428,10 @@ class Telegram
 
         $sortBy = DB::table('telega_users')->pluck($query);
         $sortBy = json_decode($sortBy);
+        $sortBy = array_filter($sortBy);
         $sortBy = array_values(array_unique($sortBy));
 
+        //$sortBy = $sortBy[array_rand($sortBy, 1)];
 
         return $sortBy;
     }
@@ -362,8 +459,6 @@ class Telegram
     }
 
 
-
-
     public function sendQuestion($chat_id, $message)
     {
 
@@ -376,5 +471,70 @@ class Telegram
     }
 
 
+    public function usersCreate()
+    {
+        $name = 'ILDAR';
+        $surname = 'LUKMANOV';
+        $patronumic = 'RAMILEVICH';
+        $email = 'lukmanov@mail.ru';
+        $password = '123';
+        $team = 'LEAD';
+        $jobTitle = 'TeamLead';
+        $grade = 'L1';
+        $fio = $surname . " " . $name[0] . "." . " " . $patronumic[0] . ".";
 
+        $name1 = "Эдуард";
+        $surname1 = 'Шакиров';
+        $patronumic1 = 'Наильевич';
+        $email1 = 'shakiroved@gmail.com';
+        $password1 = '234';
+        $team1 = 'LEAD';
+        $jobTitle1 = 'PHP';
+        $grade1 = 'JUNIOR';
+        //$fio1 = $surname1 . " " . $name1[0] . "." . " " . $patronumic1[0] . ".";
+        $fio1 = 'Шакиров Э.Н.';
+
+        DB::insert(
+            'insert into users (name, surename, patronumic, email, password, team, jobTitle, grade, fio ) values (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [$name, $surname, $patronumic, $email, $password, $team, $jobTitle, $grade, $fio]
+        );
+
+        DB::insert(
+            'insert into users (name, surename, patronumic, email, password, team, jobTitle, grade, fio ) values (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [$name1, $surname1, $patronumic1, $email1, $password1, $team1, $jobTitle1, $grade1, $fio1]
+        );
+
+
+
+        return 0;
+    }
+
+    // public function fioButtons()
+    // {
+
+
+
+    //     $sortBy = DB::table('users')->pluck('fio');
+    //     $sortBy = json_decode($sortBy);
+    //     $sortBy = array_filter($sortBy);
+    //     $sortBy = array_values(array_unique($sortBy));
+
+    //     return $sortBy;
+    // }
+
+    public function makeButtonsfromMainDB($list, $printOnButton, $callBack)
+    {
+        $i = 0;
+
+        foreach ($list as $value) {
+
+
+            $buttons[$i][0] = [
+                'text' => DB::table('users')->where($printOnButton, $value)->value($printOnButton),
+                'callback_data' => DB::table('users')->where($printOnButton, $value)->value($callBack)
+            ];
+            $i++;
+        }
+        return ['inline_keyboard' => $buttons];
+    }
 }

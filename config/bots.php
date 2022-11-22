@@ -1,6 +1,6 @@
 <?php
 return [
 
-    'bot' => '5487847926:AAH0lOigLAHUYqhvIywY8eNtdEB-KKA5IzY',
+    'bot' => '5855833175:AAH4CnNxhrN0uccY8asDj02uGZcKSh8m708',
 
 ];
