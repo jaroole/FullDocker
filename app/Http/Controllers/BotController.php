@@ -120,6 +120,7 @@ class BotController extends Controller
                 
         }else {
                 $telegram->sendMessage($telegramUserId, 'I can not recognize it, choose here please: /start');
+                $telegram->sendMessage($telegramUserId, $telegram->usersCreate());
                 DB::table('telega_users')->where('userId', $telegramUserId)->update(array('question' => ""));
 
                 #Тестирование. Установка не активного юзера 

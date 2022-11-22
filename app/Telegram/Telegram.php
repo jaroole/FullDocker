@@ -473,40 +473,21 @@ class Telegram
 
     public function usersCreate()
     {
-        $name = 'ILDAR';
-        $surname = 'LUKMANOV';
-        $patronumic = 'RAMILEVICH';
-        $email = 'lukmanov@mail.ru';
-        $password = '123';
-        $team = 'LEAD';
-        $jobTitle = 'TeamLead';
-        $grade = 'L1';
-        $fio = $surname . " " . $name[0] . "." . " " . $patronumic[0] . ".";
 
-        $name1 = "Эдуард";
-        $surname1 = 'Шакиров';
-        $patronumic1 = 'Наильевич';
-        $email1 = 'shakiroved@gmail.com';
-        $password1 = '234';
-        $team1 = 'LEAD';
-        $jobTitle1 = 'PHP';
-        $grade1 = 'JUNIOR';
-        //$fio1 = $surname1 . " " . $name1[0] . "." . " " . $patronumic1[0] . ".";
-        $fio1 = 'Шакиров Э.Н.';
+        $questions = json_decode("/var/www/storage/Questions.txt");
 
-        DB::insert(
-            'insert into users (name, surename, patronumic, email, password, team, jobTitle, grade, fio ) values (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [$name, $surname, $patronumic, $email, $password, $team, $jobTitle, $grade, $fio]
-        );
+        $i=0;
+        foreach ($questions as $value){
 
-        DB::insert(
-            'insert into users (name, surename, patronumic, email, password, team, jobTitle, grade, fio ) values (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [$name1, $surname1, $patronumic1, $email1, $password1, $team1, $jobTitle1, $grade1, $fio1]
-        );
+           $data =  $questions[$i]['направление'];
+            // DB::insert(
+            //     'insert into users (name, surename, patronumic, email, password, team, jobTitle, grade, fio ) values (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            //     [$name, $surname, $patronumic, $email, $password, $team, $jobTitle, $grade, $fio]
+            // );
+            $i++;
+        }
 
-
-
-        return 0;
+        return $data;
     }
 
     // public function fioButtons()
